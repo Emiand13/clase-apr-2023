@@ -13,11 +13,10 @@
   </form>
 </template>
 
-<script>
+<script setup>
 import { reactive } from 'vue';
 
-export default {
-  setup() {
+
     const formValues = reactive({
       Name: "",
       age: "",
@@ -33,12 +32,6 @@ export default {
       `);
     };
 
-    return {
-      formValues,
-      Enviar
-    };
-  }
-};
 </script>
 
 
