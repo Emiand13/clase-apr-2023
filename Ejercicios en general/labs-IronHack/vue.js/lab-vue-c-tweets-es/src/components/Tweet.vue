@@ -6,7 +6,6 @@
   import Timestamp from './Timestamp.vue';
   import Message from './Message.vue';
   import Actions from './Actions.vue';
-  import Handle from './Handle.vue';
  
 
   
@@ -25,8 +24,7 @@
     <ProfileImage :image="tweet.user.image" />
     <div class="body">
       <div class="top">
-        <User :userData="tweet.user" />
-        <Handle :handle="tweet.handle"/>
+        <User :userData="tweet.user" />       
         <Timestamp :timestamp="tweet.timestamp" />
       </div>
       <div class="content">
