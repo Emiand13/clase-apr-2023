@@ -1,6 +1,6 @@
   
   <script setup>
-  import { defineProps } from 'vue';
+  // import { defineProps } from 'vue';
   import ProfileImage from './ProfileImage.vue';
   import User from './User.vue';
   import Timestamp from './Timestamp.vue';
