@@ -14,7 +14,7 @@ const resetInput = () => {
 
 <template>
   <div>
-    <input type="text" v-model="inputValue" />
+    <input type="text" class="input" v-model="inputValue" />
     <button class="button" @click="resetInput">Resetear</button>
   </div>
 </template>
@@ -24,8 +24,15 @@ const resetInput = () => {
 <style scoped>
 .button{
     background-color: rgb(30, 255, 0);
-    height: 24px;
+    height: 32px;
+    border-radius: 8px;
   
+}
+
+.input{
+height: 32px;
+
+
 }
 </style>
 
