@@ -87,7 +87,7 @@ height: 300px;
    
   width: 100%;
   height: 158px;
-  padding: 20px 0px 20px 280px;
+  padding: 20px 0px 20px 330px;
   font-family: 'Arial black';
   font-size: 50px;
   margin-top: 5px;
@@ -100,7 +100,7 @@ height: 300px;
 
 .Become{
 height: 35px;
-margin-left: 500px;
+margin-left: 550px;
 font-family:'Arial Black';
 font-size: 28px;
 line-height: 35px;
@@ -117,8 +117,8 @@ color: #000000;
 position: absolute;
 width: 150px;
 height: 31px;
-left: 700px;
-top: 50px;
+left: 750px;
+top: 60px;
 
 background: #34495E;
 border-radius: 13px;
@@ -132,10 +132,10 @@ border-radius: 13px;
 
 .Awesome {
   position: absolute;
-  top: 38px;
-  margin-left: 730px;
+  top: 62px;
+  margin-left: 780px;
   color: white;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
   font-family: 'Arial black';
  
 }
@@ -146,7 +146,7 @@ border-radius: 13px;
     justify-content: space-around;
     text-align: center;
     margin-top: 150px;
-    width: 1450px;
+    width:100%;
     height: 500px;
     padding: 30px;
     background-image: url(./images/Background.png);
@@ -154,7 +154,7 @@ border-radius: 13px;
 
 .container img {
     width: 150px;
-    height: 150px;
+    height: 220px;
     padding-top: 100px;
    
 }
