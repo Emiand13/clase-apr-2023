@@ -29,6 +29,6 @@ const closeModal = () => {
   display: grid;
   justify-content: center;
   align-items: center;
-  background: lightgray;
+  background: rgb(239, 223, 223);
 }
 </style>
