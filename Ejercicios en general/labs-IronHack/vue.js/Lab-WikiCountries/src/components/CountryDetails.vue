@@ -1,6 +1,7 @@
 <template>
   <div class="container">
     <div class="countries-wrapper">
+      <!-- Usamos la directiva v-if y si existe el valor se mostrara en el DOM -->
       <div v-if="country" class="countries-list col-7">
         <img :src="country.image" alt="Bandera del país" style="width: 300px" />
         <h1>{{ country.name }}</h1>
@@ -19,7 +20,10 @@
               <td>Borders</td>
               <td>
                 <ul>
+                  <!-- Usamos v-for para recorrer la lista de borders y generar contenido dinamicamente en base a esos elementos -->
                   <li v-for="border in country.borders" :key="border">
+                                     
+                   <!-- Usamos la directiva ":to" para crear los enlaces y en el valor establecemos "/list/" seguido de border con las "template literals" para construir una ruta dinamicamente, y usamos "getCountryName" para obtener el nombre del pais en el enlace. -->
                     <router-link :to="`/list/${border}`">{{
                       getCountryName(border)
                     }}</router-link>
@@ -30,6 +34,7 @@
           </tbody>
         </table>
       </div>
+       <!-- Usamos la directiva "v-else" por si el valor no existe se muestre en el DOM cargando... -->
       <div v-else>
         <p>Cargando...</p>
       </div>
@@ -103,7 +108,7 @@ const countries = reactive([
   {
     alpha3Code: "ALB",
     name: "Albania",
-    capital:"Tirana",
+    capital: "Tirana",
     descripcion:
       "Albania es un país del sudeste de Europa . El país está ubicado en los Balcanes en los mares Adriático y Jónico dentro delMar Mediterráneo y comparte fronteras terrestres con Montenegro al noroeste, Kosovo al noreste, Macedonia del Norte al este y Grecia al sur.",
     area: "28.748",
@@ -151,7 +156,7 @@ const countries = reactive([
   {
     alpha3Code: "ARM",
     name: "Armenia",
-    capital:"Yerevan",
+    capital: "Yerevan",
     descripcion:
       "Armenia, oficialmente la República de Armenia, es un país sin salida al mar en las tierras altas armenias de Asia occidental. Es parte de la región del Cáucaso y limita con Turquía al oeste, Georgia al norte, el corredor de Lachin (bajo una fuerza de mantenimiento de la paz rusa) y Azerbaiyán al este, e Irán y el enclave azerbaiyano de Nakhchivan al sur. Ereván es la capital, la ciudad más grande y el centro financiero.",
     area: "29,743",
@@ -163,7 +168,7 @@ const countries = reactive([
   {
     alpha3Code: "ASM",
     name: "American Samoa",
-    capital:"Pago Pago",
+    capital: "Pago Pago",
     descripcion:
       "Samoa Americana , es un territorio no incorporado de Estados Unidos ubicado al oeste de las Islas Cook, al norte de Tonga y al sur de Tokelau y Océano Pacífico, es frecuentemente golpeada por tifones entre diciembre y es uno de los 17 territorios no autónomos bajo supervisión del Comité de Descolonización de las Naciones Unidas.",
     area: "199",
@@ -175,7 +180,8 @@ const countries = reactive([
   {
     alpha3Code: "ATA",
     name: "Antarctica",
-    capital:"La Antártida no es un país, sino una colección de reclamos territoriales de varios otros países.",
+    capital:
+      "La Antártida no es un país, sino una colección de reclamos territoriales de varios otros países.",
     descripcion:
       "Antarctica , es el continente más austral y menos poblado de la Tierra . Situado casi en su totalidad al sur del círculo polar antártico y rodeado por el océano Antártico (también conocido como el océano Antártico), contiene el Polo Sur geográfico.",
     area: "14,200,000",
@@ -187,7 +193,7 @@ const countries = reactive([
   {
     alpha3Code: "FLK",
     name: "Falkland Islands",
-    capital:"Stanley",
+    capital: "Stanley",
     descripcion:
       "Las Islas Malvinas son un archipiélago de 778 islas con una superficie terrestre de 4.700 millas cuadradas (12.000 km 2). El archipiélago consta de dos islas principales, West Falkland y East Falkland, que representan el 91% de la superficie terrestre. La costa de las Islas Malvinas se estima en 800 millas (1300 km).",
     area: "12,000",
@@ -199,7 +205,7 @@ const countries = reactive([
   {
     alpha3Code: "FRA",
     name: "France",
-    capital:"Paris",
+    capital: "Paris",
     descripcion:
       "Francia es un país soberano que se extiende por Europa Occidental y por regiones y territorios de ultramar en América y los océanos Atlántico, Pacífico e Índico. La capital del país es París, una de las ciudades más turísticas del mundo, que está atravesada por el río Sena.",
     area: "640,679",
@@ -211,7 +217,7 @@ const countries = reactive([
   {
     alpha3Code: "ZWE",
     name: "Zimbabwe",
-    capital:"Paris",
+    capital: "Paris",
     descripcion:
       "Zimbabue es un país africano, rodeado por Sudáfrica, Botsuana, Zambia y Mozambique. En la frontera noroeste está el río Zambeze donde se encuentran las cataratas Victoria, que es un destino popular para los turistas. Al sur limitando con Sudáfrica se encuentran el río Limpopo.",
     area: "386,850",
@@ -223,7 +229,7 @@ const countries = reactive([
   {
     alpha3Code: "ESP",
     name: "España",
-    capital:"Madrid",
+    capital: "Madrid",
     descripcion:
       "España o Reino de España es un país situado en el sur de Europa occidental y norte de África, que está compuesto por comunidades autónomas y es miembro de la Unión Europea.",
     area: "505.990",
@@ -239,7 +245,7 @@ const countries = reactive([
       " Italia es un país soberano transcontinental, miembro y fundador de la Unión Europea, constituido en una república parlamentaria compuesta por veinte regiones, integradas estas, a su vez, por ciento once provincias.",
     area: "301,340",
     image: "https://flagcdn.com/w160/it.png",
-    borders: ["FRA", "ESP",],
+    borders: ["FRA", "ESP"],
 
     // Otros detalles del país
   },
@@ -250,19 +256,10 @@ const countries = reactive([
       "Venezuela es un país ubicado en el extremo norte de América del Sur. Limita con el Mar Caribe y el Océano Atlántico al norte, Guyana al este, Brasil al sur y Colombia al suroeste y al oeste. Venezuela ocupa un área aproximadamente triangular que es más grande que las áreas combinadas de Francia y Alemania. El nombre oficial de Venezuela es República Bolivariana de Venezuela.",
     area: "912.050",
     image: "https://flagcdn.com/w160/ve.png",
-    borders: ["FRA", "ESP",],
+    borders: ["FRA", "ESP"],
 
     // Otros detalles del país
   },
-
-
-
-
-
-
-
-
-
 
   // Otros países
 ]);
