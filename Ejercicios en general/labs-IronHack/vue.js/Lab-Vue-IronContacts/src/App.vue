@@ -62,14 +62,11 @@
           <td>
             <button
               @click="eliminarContacto(contact.id)"
-              class="boton-eliminar"
-            >
+              class="boton-eliminar">
               Delete
             </button>
           </td>
         </tr>
-
-        <!-- Repetir el patrón anterior para cada contacto -->
       </tbody>
     </table>
   </div>
@@ -127,13 +124,16 @@ const contacts = reactive([
   },
 ]);
 
-const ordenacionPorNombre = ref(true); // Estado de ordenación inicial
+// Estado de ordenación inicial
+const ordenacionPorNombre = ref(true);
 
+// Con esta funcion nos encargamos de ordenar los contactos por nombre y utilizamos el metodo sort para ordenar el array "contacts" en funcion del nombre de cada contacto, dentro de la funcion usamos localeCompare para comparar las cadenas de Texto.
 const ordenarPorNombre = () => {
   contacts.sort((a, b) => a.name.localeCompare(b.name));
   ordenacionPorNombre.value = true;
 };
 
+// En esta funcion hacemos lo mismo que la anterior pero esta vez ordenamos por popularidad.
 const ordenarPorPopularidad = () => {
   contacts.sort((a, b) => b.popularity - a.popularity);
   ordenacionPorNombre.value = false;
@@ -569,8 +569,14 @@ const remainingContacts = reactive([
   },
 ]);
 
-const buttonColor = ref("gold"); // Color inicial del botón
 
+
+
+// Color inicial del botón 
+const buttonColor = ref("gold"); 
+
+
+// La función addRandomContact selecciona aleatoriamente un contacto del array remainingContacts y lo agrega al array contacts. Esto permite agregar contactos aleatorios a la lista de contactos existente.
 const addRandomContact = () => {
   if (remainingContacts.length > 0) {
     const randomIndex = Math.floor(Math.random() * remainingContacts.length);
@@ -578,22 +584,21 @@ const addRandomContact = () => {
     contacts.push(randomContact);
   }
 
-  buttonColor.value = "green"; // Cambiar el color del botón a verde
+  // Cambiar el color del botón a verde
+  buttonColor.value = "green"; 
 
   // Restaurar el color del botón después de 1 segundo
   setTimeout(() => {
     buttonColor.value = "gold"; // Color inicial del botón
   }, 800);
+};
 
-}
 
-  const eliminarContacto = (id) => {
-  const index = contacts.findIndex((contact) => contact.id === id);
-  if (index !== -1) {
-    contacts.splice(index, 1);
-  }
 
-  const eliminarContacto = (id) => {
+
+
+  // La función eliminarContacto busca un contacto por su id en el array contacts y lo elimina si se encuentra. Luego, se actualiza la referencia de contacts para reflejar los cambios realizados.
+const eliminarContacto = (id) => {
   const index = contacts.findIndex((contact) => contact.id === id);
   if (index !== -1) {
     contacts.splice(index, 1);
@@ -602,11 +607,13 @@ const addRandomContact = () => {
   }
 };
 
-};
+
+
+
+
 </script>
 
 <style scoped>
-
 .titulo {
   display: flex;
   justify-content: center;
@@ -687,11 +694,9 @@ const addRandomContact = () => {
   font-size: 45px;
 }
 
-.emmy-icono{
+.emmy-icono {
   font-size: 55px;
   color: gold;
-
-
 }
 
 .botones {
@@ -716,8 +721,7 @@ const addRandomContact = () => {
   height: 140px;
 }
 
-
-.boton-eliminar{
+.boton-eliminar {
   color: gold;
   font-size: 30px;
   height: 40px;
@@ -728,8 +732,4 @@ const addRandomContact = () => {
   margin-bottom: 20px;
   /* text-shadow: 2px 2px 4px rgb(255, 255, 255); */
 }
-
-
-
-
 </style>
