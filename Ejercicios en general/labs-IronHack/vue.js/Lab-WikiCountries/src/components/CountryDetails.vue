@@ -55,6 +55,7 @@ const countries = reactive([
   {
     alpha3Code: "ABW",
     name: "Aruba",
+    capital:"Oranjestad, Aruba",
     descripcion:
       "Aruba es un estado insular de las Antillas Menores en el Caribe Sur y se encuentra a unos 27 km al norte de Venezuela. El estado enano tiene un área total de solo 179 km² y una costa total de 69 km. Esta área es aproximadamente el 5,3 del tamaño de la ciudad de Manhattan.",
     area: "179",
@@ -65,6 +66,7 @@ const countries = reactive([
   {
     alpha3Code: "AFG",
     name: "Afghanistan",
+    capital:"Kabul",
     descripcion:
       'Afganistán significa la tierra de los afganos. El término "stan" también se usa en varios países de Asia. La situación geográfica de Afganistán lo ha convertido en lugar de encuentro de imperios y civilizaciones, así como espacio de intercambio y comunicación de importantes polos culturales y comerciales, entre ellos destaca la ruta de la seda.',
     area: "652860",
@@ -75,6 +77,7 @@ const countries = reactive([
   {
     alpha3Code: "AGO",
     name: "Angola",
+    capital:"Luanda",
     descripcion:
       "Angola es un país de la región centroafricana. Es un territorio populoso, hogar de casi 34 millones de personas. Tiene al petróleo como base de su economía.",
     area: "1,246,700",
@@ -86,22 +89,24 @@ const countries = reactive([
   {
     alpha3Code: "AIA",
     name: "Anguilla",
+    capital:"El Valle",
     descripcion:
       "Anguilla es un territorio británico de ultramar localizado en el Caribe, específicamente en el extremo norte de las islas de Barlovento, en las Antillas Menores. Es uno de los 17 territorios no autónomos bajo supervisión del Comité de Descolonización de las Naciones Unidas, con el fin de eliminar el colonialismo ​ Su capital es El Valle. El archipiélago comprende la isla de Anguila y algunos islotes cercanos y posee fronteras marítimas con la isla de San Martín al sudeste. Al oeste se encuentran las Islas Vírgenes Británicas.​",
     area: "102",
     image: "https://flagcdn.com/w160/ai.png",
-    borders: ["AIA", "ALA"],
+    borders: ["AIA", "ASM"],
 
     // Otros detalles del país
   },
   {
     alpha3Code: "ALA",
     name: "Åland Islands",
+    capital:"Åland",
     descripcion:
       "Åland Islands es un archipiélago y provincia autónoma de Finlandia situado en el mar Báltico, entre Suecia y Finlandia continental. La población de las islas era de 28 983 habitantes el 31 de diciembre de 2015,5​ de los cuales 11 461 (39 %) vivían en la capital, Mariehamn (en finés, Maarianhamina). ",
     area: "	1552",
     image: "https://flagcdn.com/w160/ax.png",
-    borders: ["AIA", "ALA"],
+    borders: ["ATA", "FLK"],
 
     // Otros detalles del país
   },
@@ -217,7 +222,7 @@ const countries = reactive([
   {
     alpha3Code: "ZWE",
     name: "Zimbabwe",
-    capital: "Paris",
+    capital: "Harare",
     descripcion:
       "Zimbabue es un país africano, rodeado por Sudáfrica, Botsuana, Zambia y Mozambique. En la frontera noroeste está el río Zambeze donde se encuentran las cataratas Victoria, que es un destino popular para los turistas. Al sur limitando con Sudáfrica se encuentran el río Limpopo.",
     area: "386,850",
@@ -241,6 +246,7 @@ const countries = reactive([
   {
     alpha3Code: "ITA",
     name: "Italia",
+    capital: "Roma",
     descripcion:
       " Italia es un país soberano transcontinental, miembro y fundador de la Unión Europea, constituido en una república parlamentaria compuesta por veinte regiones, integradas estas, a su vez, por ciento once provincias.",
     area: "301,340",
@@ -252,26 +258,34 @@ const countries = reactive([
   {
     alpha3Code: "VNZ",
     name: "Venezuela",
+    capital:"Caracas",
     descripcion:
       "Venezuela es un país ubicado en el extremo norte de América del Sur. Limita con el Mar Caribe y el Océano Atlántico al norte, Guyana al este, Brasil al sur y Colombia al suroeste y al oeste. Venezuela ocupa un área aproximadamente triangular que es más grande que las áreas combinadas de Francia y Alemania. El nombre oficial de Venezuela es República Bolivariana de Venezuela.",
     area: "912.050",
     image: "https://flagcdn.com/w160/ve.png",
     borders: ["FRA", "ESP"],
 
-    // Otros detalles del país
   },
-
-  // Otros países
 ]);
+
+
+// Al utilizar ref(null), se crea una variable reactiva llamada country con un valor inicial de null, y su valor puede ser accedido y modificado utilizando .value.
 const country = ref(null);
+
+
+// updateCountry: Es una función que se encarga de actualizar el valor de country basándose en una condición. En este caso, utiliza el método find para buscar un objeto en el array countries cuya propiedad alpha3Code sea igual al valor de alpha3Code.value, y luego asigna ese objeto a country.value.
 
 const updateCountry = () => {
   country.value = countries.find((c) => c.alpha3Code === alpha3Code.value);
 };
 
+
+// onMounted: Es un gancho (hook) proporcionado por Vue que se ejecuta cuando el componente ha sido montado en el DOM. En este caso, se utiliza para llamar a la función updateCountry() una vez que el componente ha sido montado, asegurando que country tenga un valor inicial correcto.
 onMounted(() => {
   updateCountry();
 });
+
+// watch: Es otra característica de reactividad proporcionada por Vue que permite observar cambios en una expresión o una propiedad reactiva y ejecutar una función cuando ocurren esos cambios. En este caso, se utiliza para observar cambios en route.params.alpha3Code. Cuando ese valor cambia, la función de devolución de llamada se ejecuta, actualizando alpha3Code.value con el nuevo valor y llamando a updateCountry() para actualizar country.
 
 watch(
   () => route.params.alpha3Code,
@@ -281,13 +295,10 @@ watch(
   }
 );
 
+// La función getCountryName se utiliza para obtener el nombre de un país basado en su código de tres letras (alpha3Code). Si se encuentra el país correspondiente en el array countries, se devuelve su nombre. De lo contrario, se devuelve una cadena vacía.
 function getCountryName(alpha3Code) {
   const country = countries.find((c) => c.alpha3Code === alpha3Code);
   return country ? country.name : "";
 }
+
 </script>
-
-
-<style scoped>
-</style>
-  
